@@ -1,0 +1,46 @@
+<ion-header [translucent]="true">
+  <ion-toolbar color="primary">
+    <ion-title>
+      Blank
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-grid>
+    <ion-row>
+      <ion-col sizeMd="6" offsetMd="3" >
+        <ion-card>
+          <ion-card-header>
+            <ion-card-title>
+              New Expense
+            </ion-card-title>
+          </ion-card-header>
+          <ion-card-content>
+            <ion-item>
+              <ion-label position="floating">Expense reason</ion-label>
+              <ion-input type="text" ></ion-input>
+            </ion-item>
+            <ion-item>
+              <ion-label position="floating">Expense amount</ion-label>
+              <ion-input type="number"></ion-input>
+            </ion-item>
+
+            <div class="ion-margin-vertical ion-text-right">
+              <ion-button color="danger" fill="outline">
+                <ion-icon name="close" slot="start"></ion-icon>
+                Clear
+              </ion-button>
+              <ion-button> 
+                <ion-icon name="add" slot="start"></ion-icon>
+                Add expense
+              </ion-button>
+            </div>
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+ 
+
+</ion-content>
