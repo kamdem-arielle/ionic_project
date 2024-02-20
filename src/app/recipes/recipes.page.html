@@ -1,8 +1,97 @@
 <ion-header [translucent]="true">
   <ion-toolbar color="primary">
     <ion-title>recipes</ion-title>
+    <ion-buttons slot="primary">
+      <ion-button id="open-modal" expand="block">
+        <ion-icon slot="icon-only" name="add-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
+
+<ion-modal trigger="open-modal" (willDismiss)="onWillDismiss($event)">
+  <ng-template>
+    <ion-header>
+      <ion-toolbar color="primary">
+        <ion-buttons slot="primary">
+          <ion-button (click)="cancel()">Cancel</ion-button>
+        </ion-buttons>
+        <ion-title>Welcome</ion-title>
+        <!-- <ion-buttons slot="end">
+          <ion-button (click)="confirm()" [strong]="true">Confirm</ion-button>
+        </ion-buttons> -->
+      </ion-toolbar>
+    </ion-header>
+    <ion-content>
+      <ion-item>
+        <ion-input
+          label="Enter recipe name"
+          labelPlacement="stacked"
+          type="text"
+          placeholder="Recipe name"
+          [(ngModel)]="name"
+        ></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-grid class="ion-no-padding">
+          <ion-row>
+            <ion-col size="10" class="ion-no-padding">
+              <ion-input
+                label="Enter ingredient name"
+                labelPlacement="stacked"
+                type="text"
+                placeholder="Ingredient name"
+                [(ngModel)]="ingredient"
+              ></ion-input>
+            </ion-col>
+            <ion-col size="2" class="ion-align-self-center">
+              <ion-button (click)="addIngredient()">
+                <ion-icon slot="icon-only" name="add-outline"></ion-icon>
+              </ion-button>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+      </ion-item>
+      <ion-grid>
+        <ion-row>
+          <ion-col>
+            <ion-button class="ion-margin-top" expand="block" (click)=" addRecipe()">Save</ion-button>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+        
+  
+      
+
+      <div style="margin-top: 20px;">
+
+        <p class="ion-text-center">Recipe Summary</p>
+        <ion-item lines="none">    
+          <ion-label>
+            <h1 style="color: dodgerblue;">Recipe Name</h1>
+            <p>{{name}}</p>
+          </ion-label>
+        </ion-item>
+        <div>
+          <ion-item lines="none">
+            <h1 style="color: dodgerblue;margin-bottom: 0px;">Ingredients List</h1>
+          </ion-item>
+          <ion-list>
+            <ion-item *ngIf="ingredientList.length === 0" lines="none">
+              <ion-label class="ion-text-center">No ingredient for now.</ion-label>
+            </ion-item>
+            <ng-container *ngIf="ingredientList.length > 0">
+              <ion-item *ngFor="let item of ingredientList">
+                <ion-label>{{item}}</ion-label>
+              </ion-item>
+            </ng-container> 
+          </ion-list>
+        </div>
+      </div>
+
+    </ion-content>
+  </ng-template>
+</ion-modal>
 
 <ion-content [fullscreen]="true">
   <!-- <ion-header collapse="condense">
@@ -11,9 +100,12 @@
     </ion-toolbar>
   </ion-header> -->
   <ion-list>
-    <ion-item *ngFor="let item of recipeService.recipes" [routerLink]="['/recipes',item.id]">
+    <ion-item
+      *ngFor="let item of recipeService.recipes"
+      [routerLink]="['/recipes',item.id]"
+    >
       <ion-avatar slot="start">
-        <ion-img [src]="item.imageUrl" ></ion-img>
+        <ion-img [src]="item.imageUrl"></ion-img>
       </ion-avatar>
       <ion-label>{{item.name}}</ion-label>
     </ion-item>

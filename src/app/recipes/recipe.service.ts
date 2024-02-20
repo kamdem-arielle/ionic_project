@@ -4,6 +4,7 @@ import { Injectable } from '@angular/core';
   providedIn: 'root'
 })
 export class RecipeService {
+  count=4
   recipes = [
     {
       id:"r1",
