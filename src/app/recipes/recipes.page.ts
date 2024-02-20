@@ -28,6 +28,9 @@ export class RecipesPage implements OnInit {
   }
 
   cancel() {
+    this.ingredientList =[]
+    this.name='';
+    this.ingredient='';
     this.modal.dismiss(null, 'cancel');
   }
 
